@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Creator Sponsorship Rate Benchmarking Tool</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; background: #0f172a; color: #fff; padding: 2rem; }
+    .card { background: #1e293b; padding: 2rem; border-radius: 12px; max-width: 600px; margin: 0 auto; border: 1px solid #334155; }
+    input, select { width: 100%; box-sizing: border-box; padding: 10px; margin: 10px 0 20px; background: #0f172a; border: 1px solid #475569; color: #fff; border-radius: 6px; }
+    button { background: #0284c7; color: #fff; padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    .res { margin-top: 1.5rem; padding: 1rem; background: #0284c7; border-radius: 6px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>GCC Creator Sponsorship Rate Benchmark</h2>
+    <label>Platform</label>
+    <select id="platform"><option value="snapchat">Snapchat</option><option value="tiktok">TikTok</option><option value="instagram">Instagram Reels</option></select>
+    <label>Follower / Viewer Count</label>
+    <input type="number" id="views" value="50000">
+    <button onclick="calculate()">Benchmark Fair Rate (SAR)</button>
+    <div id="output" class="res">Estimated Fair Sponsorship Range: SAR 6,000 - SAR 9,500</div>
+  </div>
+  <script>
+    function calculate() {
+      const v = parseFloat(document.getElementById('views').value) || 0;
+      const low = Math.round(v * 0.12);
+      const high = Math.round(v * 0.19);
+      document.getElementById('output').innerText = `Estimated Fair Sponsorship Range: SAR ${low.toLocaleString()} - SAR ${high.toLocaleString()}`;
+    }
+  </script>
+</body>
+</html>

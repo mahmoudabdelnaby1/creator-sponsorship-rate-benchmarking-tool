@@ -1,0 +1,9 @@
+{
+  "saudi_arabia": {
+    "cpm_view_benchmark_sar": 150.0,
+    "mawthooq_compliance_premium": "+15%"
+  },
+  "uae": {
+    "cpm_view_benchmark_sar": 180.0
+  }
+}

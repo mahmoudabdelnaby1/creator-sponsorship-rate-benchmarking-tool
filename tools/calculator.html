@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MENA Creator Sponsorship Rate Calculator</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; padding: 2rem 1rem; margin: 0; }
+  .container { max-width: 650px; margin: 0 auto; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 2rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.35rem; }
+  select, input { width: 100%; box-sizing: border-box; padding: 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+  .result { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.5rem; border-radius: 8px; text-align: center; margin-top: 1.5rem; }
+  .rate-val { font-size: 2rem; font-weight: 800; color: #16a34a; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 style="font-size: 1.5rem; margin: 0 0 0.5rem 0;">Creator Sponsorship Rate Calculator</h1>
+  <p style="color: #64748b; font-size: 0.875rem;">Calculates fair market rate ranges for Saudi / UAE creators based on engagement & platform.</p>
+  
+  <div class="form-group">
+    <label>Platform</label>
+    <select id="platform">
+      <option value="tiktok">TikTok (Short-Form Video)</option>
+      <option value="instagram_reel">Instagram Reel</option>
+      <option value="snapchat">Snapchat Story (3-5 Snaps)</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Creator Tier / Follower Count</label>
+    <select id="followers">
+      <option value="15000">Micro (10k - 50k followers)</option>
+      <option value="100000">Mid-Tier (50k - 250k followers)</option>
+      <option value="500000">Macro (250k - 1M followers)</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Engagement Rate (%)</label>
+    <input type="number" id="er" value="3.5" step="0.1">
+  </div>
+
+  <div class="result">
+    <div style="font-size: 0.85rem; color: #15803d; font-weight: 600;">ESTIMATED FAIR RATE RANGE</div>
+    <div class="rate-val" id="rateDisplay">$450 - $650</div>
+    <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem;">Includes 30-day organic usage rights (excluding paid ad whitelisting).</div>
+  </div>
+</div>
+<script>
+function calcRate() {
+  const f = parseInt(document.getElementById('followers').value, 10);
+  const er = parseFloat(document.getElementById('er').value) || 3.0;
+  
+  let baseCpm = 18.0; // standard MENA view CPM baseline
+  let estimatedViews = f * (er / 100.0) * 4.0;
+  let midRate = (estimatedViews / 1000.0) * baseCpm;
+  
+  let low = Math.round(midRate * 0.8);
+  let high = Math.round(midRate * 1.3);
+  
+  document.getElementById('rateDisplay').innerText = "$" + low + " - $" + high;
+}
+document.querySelectorAll('select, input').forEach(el => el.addEventListener('input', calcRate));
+calcRate();
+</script>
+</body>
+</html>
